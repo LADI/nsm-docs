@@ -1,9 +1,0 @@
-*~
-*.bak
-*.swp
-*.[ao]
-TAGS
-.nfs*
-.waf*
-build
-attic
