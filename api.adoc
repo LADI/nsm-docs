@@ -508,7 +508,7 @@ Clients which have this capability should include `:message:` in their `announce
 string.
 
 
-===== Error Code Definitions
+=== Error Code Definitions
 
 .Error Code Definitions
 [options="header", stripes=even]
