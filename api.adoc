@@ -22,7 +22,7 @@ Document authors:
 
 |===
 |api_version_major | 1
-|api_version_minor | 2
+|api_version_minor | 0
 |===
 
 This document describes the NON Session Manager OSC API as defined and
