@@ -18,6 +18,26 @@ Document authors:
  * Nils Hilbricht (2020-07 initial adaptation of the NON project version)
  * Nedko Arnaudov (2022 onward, as part of LADI project)
 
+== Versioning
+
+.Available Client Capabilities
+[options="header", stripes=even]
+|===
+|Name | Description
+|api_version_major | 1
+|api_version_minor | 2
+|===
+
+This document describes the NON Session Manager OSC API as defined and
+implemented by NON project. The only difference is server-control
+capability which was fixed in NON project codebase before the New
+Session Manager schism but as of when this document is written, is not
+fixed at the NSM API URL, see http://non.tuxfamily.org/nsm/API.html
+for more info.
+
+For definition of the new-session-manager OSC API,
+see https://new-session-manager.jackaudio.org/api/index.html
+
 == Session Management as part of the Non audio production suite
 
 The Non Session Management API is used by the various components of the Non audio production suite

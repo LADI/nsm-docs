@@ -676,6 +676,43 @@ Nedko Arnaudov (2022 onward, as part of LADI project)
 </div>
 </div>
 <div class="sect1">
+<h2 id="_versioning">Versioning</h2>
+<div class="sectionbody">
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 1. Available Client Capabilities</caption>
+<col width="50%" />
+<col width="50%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Name</p></td>
+<td align="left" valign="top"><p class="table">Description</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">api_version_major</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">api_version_minor</p></td>
+<td align="left" valign="top"><p class="table">2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>This document describes the NON Session Manager OSC API as defined and
+implemented by NON project. The only difference is server-control
+capability which was fixed in NON project codebase before the New
+Session Manager schism but as of when this document is written, is not
+fixed at the NSM API URL, see <a href="http://non.tuxfamily.org/nsm/API.html">http://non.tuxfamily.org/nsm/API.html</a>
+for more info.</p></div>
+<div class="paragraph"><p>For definition of the new-session-manager OSC API,
+see <a href="https://new-session-manager.jackaudio.org/api/index.html">https://new-session-manager.jackaudio.org/api/index.html</a></p></div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_session_management_as_part_of_the_non_audio_production_suite">Session Management as part of the Non audio production suite</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The Non Session Management API is used by the various components of the Non audio production suite
@@ -810,7 +847,7 @@ like Python can be more challenging.</p></div>
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 1. Available Client Capabilities</caption>
+<caption class="title">Table 2. Available Client Capabilities</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -858,7 +895,7 @@ say "Non Session Manager", or it might say "LADISH". This is for display to the 
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 2. Available Server Capabilities</caption>
+<caption class="title">Table 3. Available Server Capabilities</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -894,7 +931,7 @@ For example, the Non applications activate their "SM" blinkers at this time.</p>
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 3. Response codes</caption>
+<caption class="title">Table 4. Response codes</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -1007,7 +1044,7 @@ indicated by sending messages to <code>/nsm/client/progress</code>.</p></div>
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 4. Response codes</caption>
+<caption class="title">Table 5. Response codes</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -1064,7 +1101,7 @@ times within the course of a session (including zero, if the user aborts the ses
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 5. Response codes</caption>
+<caption class="title">Table 6. Response codes</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -1191,7 +1228,7 @@ string.</p></div>
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 6. Error Code Definitions</caption>
+<caption class="title">Table 7. Error Code Definitions</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -1273,7 +1310,7 @@ error.</p></div>
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 7. Responses</caption>
+<caption class="title">Table 8. Responses</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -1491,7 +1528,7 @@ of which might respond to the message by updating their own tempo maps.</p></div
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2022-08-21 19:40:41 EEST
+ 2022-08-21 20:03:03 EEST
 </div>
 </div>
 </body>
