@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 10.1.3" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 10.2.0">
 <title>Non Session Manager protocol</title>
 <style type="text/css">
 /*
- * AsciiDoc 'volnitsky' theme for xhtml11 and html5 backends.
+ * AsciiDoc 'ladi' theme, based on 'volnitsky' theme for xhtml11 and html5 backends.
  * Based on css from http://volnitsky.com, which was in turn based on default
  * theme from AsciiDoc
  *
@@ -18,7 +16,8 @@
 
 /* Default font. */
 body {
-  font-family: Georgia,"Times New Roman",Times,serif;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 16pt;
 }
 
 /* Title font. */
@@ -31,6 +30,7 @@ thead, p.table.header,
   font-family: Candara,Arial,sans-serif;
 }
 
+a.image { border-bottom: 0; }
 
 #toc a {
     border-bottom: 1px dotted #999999;
@@ -59,17 +59,42 @@ strong {
 h1, h2, h3, h4, h5, h6 {
   color: #666688;
   margin-bottom: 0.5em;
+  margin-right: 1em;
   line-height: 1.3;
   letter-spacing:+0.15em;
 }
 
-h1, h2, h3 { border-bottom: 2px solid #ccd; }
-h2 { padding-top: 0.5em; }
-h3 { float: left; }
-h3 + * { clear: left; }
+h1, h2, h3, h4, h5, h6 {
+  margin-left: 0em;
+}
+
+/* h1 { margin-left: 2em; } */
+h2 { margin-left: 2em; }
+/* h3 { margin-left: 4em; } */
+/* h4 { margin-left: 5em; } */
+/* h5 { margin-left: 6em; } */
+/* h6 { margin-left: 7em; } */
+
+h2 { border-bottom: 4px solid #ccd; }
+h3 { border-bottom: 2px dotted #ccd; }
+/* h2, h3 { border-bottom: 2px solid #ccd; } */
+/* h2 { padding-top: 0.5em; } */
+/* h3 { float: left; } */
+/* h3 + * { clear: left; } */
+
+div.banner {
+    background: #004455;
+    text-align: center;
+    color: #C6E9AF;
+    padding: 0;
+    margin: 0;
+}
 
 div.sectionbody {
-  margin-left: 0;
+  margin-top: 0;
+  margin-left: 3em;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }
 
 hr {
@@ -77,6 +102,8 @@ hr {
 }
 
 p {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -99,18 +126,18 @@ pre {
 #footer {
   font-size: small;
   border-top: 2px solid silver;
-  padding-top: 0.5em;
-  margin-top: 4.0em;
+  margin: 0;
 }
 
 #footer-text {
-  float: left;
-  padding-bottom: 0.5em;
+  /* float: left; */
+  padding: 1em;
+  text-align: center;
 }
 
 #footer-badges {
   float: right;
-  padding-bottom: 0.5em;
+  padding: 0.5em;
 }
 
 #preamble {
@@ -130,8 +157,8 @@ div.admonitionblock {
   margin-bottom: 2.5em;
 }
 
-div.content { /* Block element content. */
-  padding: 0;
+#content { /* Block element content. */
+  margin: 2em;
 }
 
 /* Block element titles. */
@@ -332,10 +359,8 @@ div.toclevel3 { margin-left: 4em; font-size: 0.8em; }
 div.toclevel4 { margin-left: 6em; font-size: 0.8em; }
 
 body {
-  margin: 1em 5%;
-  max-width:  55em;
-  padding-left: 0;
-
+  margin: 0;
+  padding: 0;
 }
 
 .monospaced, tt, div.listingblock > div.content {
@@ -346,12 +371,23 @@ body {
   line-height: 1.2em;
 }
 
-.paragraph p  {
-  line-height: 1.5em;
-  margin-top: 1em;
+#header {
+  text-align: center;
+  margin: 2em;
 }
 
-.paragraph p, li, dd, .content { max-width: 45em; }
+#toc {
+  text-align: left;
+  margin-left: 3em;
+  max-width: 80%;
+}
+
+.paragraph p {
+  line-height: 1.5em;
+  /* margin: 1em; */
+}
+
+.paragraph p, li, dd, .content { max-width: 80em; }
 .admonitionblock               { max-width: 35em; }
 
 div.sectionbody div.ulist > ul > li {
@@ -646,7 +682,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>Non Session Manager protocol</h1>
-<span id="author">This is adaptation of non-session-manager documentation for needs of LADI project</span><br />
+<span id="author">This is adaptation of non-session-manager documentation for needs of LADI project</span><br>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -678,25 +714,23 @@ Nedko Arnaudov (2022 onward, as part of LADI project)
 <div class="sect1">
 <h2 id="_versioning">Versioning</h2>
 <div class="sectionbody">
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
-<col width="50%" />
-<col width="50%" />
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">api_version_major</p></td>
-<td align="left" valign="top"><p class="table">1</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">api_version_major</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">api_version_minor</p></td>
-<td align="left" valign="top"><p class="table">0</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">api_version_minor</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">0</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="paragraph"><p>This document describes the NON Session Manager OSC API as defined and
 implemented by NON project. The only difference is server-control
 capability which was fixed in NON project codebase before the New
@@ -715,11 +749,11 @@ to allow any number of independent programs to be managed together as part of a 
 (i.e. a song). Thus, operations such as loading and saving are synchronized.</p></div>
 <div class="paragraph"><p>The API comprises a simple Open Sound Control (OSC) based protocol, along with some behavioral
 guidelines, which can easily be implemented by various applications.</p></div>
-<div class="paragraph"><p>The Non project contains an program called <code>nsmd</code> which is an implementation of the server side of
-the NSM API. <code>nsmd</code> is controlled by the <code>non-session-manager</code> GUI. However, the same server-side
+<div class="paragraph"><p>The Non project contains an program called <span class="monospaced">nsmd</span> which is an implementation of the server side of
+the NSM API. <span class="monospaced">nsmd</span> is controlled by the <span class="monospaced">non-session-manager</span> GUI. However, the same server-side
 API can also be implemented by other session managers (such as LADISH), although consistency and
 robustness will likely suffer if non-NSM compliant clients are allowed to participate in a session.
-The only dependency for client implementations <code>liblo</code> (the OSC library), which several Linux audio
+The only dependency for client implementations <span class="monospaced">liblo</span> (the OSC library), which several Linux audio
 applications already link to or plan to link to in the future.b</p></div>
 <div class="paragraph"><p>The aim of this project is to thoroughly define the behavior required of clients. This is an area
 where other attempts at session management (LASH and JACK-Session) have failed. Often the
@@ -740,7 +774,7 @@ presented under a File or Project menu.</p></div>
 <div class="paragraph"><p>These are: New, Open, Save, Save As, Close and Quit or Exit.</p></div>
 <div class="paragraph"><p>The following sub-sections describe how these options should behave when the application is part of
 an NSM session. These rules only apply when session management is active (that is, after the
-<code>announce</code> handshake described in the <a href="#NSM OSC Protocol">[NSM OSC Protocol]</a> section. In order to provide a
+<span class="monospaced">announce</span> handshake described in the <a href="#NSM OSC Protocol">[NSM OSC Protocol]</a> section. In order to provide a
 consistent and predictable user experience, it is critically important for applications to adhere
 to these guidelines.</p></div>
 <div class="sect2">
@@ -759,7 +793,7 @@ copy of a file/project which is then saved at the session path provided by NSM.<
 <div class="sect3">
 <h4 id="_save">Save</h4>
 <div class="paragraph"><p>This option should behave as normal, saving the current file/project as established by the NSM
-<code>open</code> message.</p></div>
+<span class="monospaced">open</span> message.</p></div>
 <div class="paragraph"><p>UNDER NO CIRCUMSTANCES should this option present the user with a choice of where to save the file.</p></div>
 </div>
 <div class="sect3">
@@ -803,152 +837,146 @@ to (some unique component may be required to prevent collisions)</p></div>
 <div class="sect1">
 <h2 id="_nsm_osc_protocol">NSM OSC Protocol</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>All message parameters are REQUIRED. All messages MUST be sent from the same socket as the <code>announce</code>
-message, using the <code>lo_send_from</code> method of liblo or its equivalent, as the server uses the return
+<div class="paragraph"><p>All message parameters are REQUIRED. All messages MUST be sent from the same socket as the <span class="monospaced">announce</span>
+message, using the <span class="monospaced">lo_send_from</span> method of liblo or its equivalent, as the server uses the return
 addresses to distinguish between clients.</p></div>
-<div class="paragraph"><p>Clients MUST create thier OSC servers using the same protocol (UDP,TCP) as found in <code>NSM_URL</code>. liblo
+<div class="paragraph"><p>Clients MUST create thier OSC servers using the same protocol (UDP,TCP) as found in <span class="monospaced">NSM_URL</span>. liblo
 is lacking a robust TCP implementation at the time of writing, but in the future it may be useful.</p></div>
 <div class="sect2">
 <h3 id="_establishing_a_connection">Establishing a Connection</h3>
 <div class="sect3">
 <h4 id="_announce">Announce</h4>
-<div class="paragraph"><p>At launch, the client MUST check the environment for the value of <code>NSM_URL</code>. If present, the client
+<div class="paragraph"><p>At launch, the client MUST check the environment for the value of <span class="monospaced">NSM_URL</span>. If present, the client
 MUST send the following message to the provided address as soon as it is ready to respond to the
-<code>/nsm/client/open</code> event:</p></div>
+<span class="monospaced">/nsm/client/open</span> event:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/server/announce s:application_name s:capabilities s:executable_name i:api_version_major i:api_version_minor i:pid</code></pre>
+<div class="content monospaced">
+<pre>/nsm/server/announce s:application_name s:capabilities s:executable_name i:api_version_major i:api_version_minor i:pid</pre>
 </div></div>
-<div class="paragraph"><p>If <code>NSM_URL</code> is undefined, invalid, or unreachable, then the client should proceed assuming that
+<div class="paragraph"><p>If <span class="monospaced">NSM_URL</span> is undefined, invalid, or unreachable, then the client should proceed assuming that
 session management is unavailable.</p></div>
-<div class="paragraph"><p><code>api_version_major</code> and <code>api_version_minor</code> must be the two parts of the version number of the NSM API
+<div class="paragraph"><p><span class="monospaced">api_version_major</span> and <span class="monospaced">api_version_minor</span> must be the two parts of the version number of the NSM API
 as defined by this document.</p></div>
-<div class="paragraph"><p>Note that if the application intends to register JACK clients, <code>application_name</code> MUST be the same as
-the name that would normally be passed to <code>jack_client_open</code>. For example, Non-Mixer sends
-"Non-Mixer" as its <code>application_name</code>. Applications MUST NOT register their JACK clients until
-receiving an <code>open</code> message; the <code>open</code> message will provide a unique client name prefix suitable for
+<div class="paragraph"><p>Note that if the application intends to register JACK clients, <span class="monospaced">application_name</span> MUST be the same as
+the name that would normally be passed to <span class="monospaced">jack_client_open</span>. For example, Non-Mixer sends
+"Non-Mixer" as its <span class="monospaced">application_name</span>. Applications MUST NOT register their JACK clients until
+receiving an <span class="monospaced">open</span> message; the <span class="monospaced">open</span> message will provide a unique client name prefix suitable for
 passing to JACK. This is probably the most complex requirement of the NSM API, but it isn&#8217;t
 difficult to implement, especially if the application simply wishes to delay its initialization
-process breifly while awaiting the <code>announce</code> reply and subsequent <code>open</code> message.</p></div>
-<div class="paragraph"><p><code>capabilities</code> MUST be a string containing a colon separated list of the special capabilities the
-client possesses. e.g. <code>:dirty:switch:progress:</code></p></div>
-<div class="paragraph"><p><code>executable_name</code> MUST be the executable name that the program was launched with. For C programs,
-this is simply the value of <code>argv[0]</code>. Note that hardcoding the name of the program here is not the
+process breifly while awaiting the <span class="monospaced">announce</span> reply and subsequent <span class="monospaced">open</span> message.</p></div>
+<div class="paragraph"><p><span class="monospaced">capabilities</span> MUST be a string containing a colon separated list of the special capabilities the
+client possesses. e.g. <span class="monospaced">:dirty:switch:progress:</span></p></div>
+<div class="paragraph"><p><span class="monospaced">executable_name</span> MUST be the executable name that the program was launched with. For C programs,
+this is simply the value of <span class="monospaced">argv[0]</span>. Note that hardcoding the name of the program here is not the
 same as using, as the user may have launched the program from a script with a different name using
 exec, or have created a symlink to the program. Getting the correct value in scripting languages
 like Python can be more challenging.</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 1. Available Client Capabilities</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Name</p></td>
-<td align="left" valign="top"><p class="table">Description</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Description</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">switch</p></td>
-<td align="left" valign="top"><p class="table">client is capable of responding to multiple <code>open</code> messages without restarting</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">switch</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client is capable of responding to multiple <span class="monospaced">open</span> messages without restarting</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">dirty</p></td>
-<td align="left" valign="top"><p class="table">client knows when it has unsaved changes</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">dirty</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client knows when it has unsaved changes</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">progress</p></td>
-<td align="left" valign="top"><p class="table">client can send progress updates during time-consuming operations</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">progress</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client can send progress updates during time-consuming operations</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">message</p></td>
-<td align="left" valign="top"><p class="table">client can send textual status updates</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">message</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client can send textual status updates</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">optional-gui</p></td>
-<td align="left" valign="top"><p class="table">client has an optional GUI</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">optional-gui</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client has an optional GUI</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="sect4">
 <h5 id="_response">Response</h5>
 <div class="paragraph"><p>The server will respond to the client&#8217;s announce message with the following message:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/reply "/nsm/server/announce" s:message s:name_of_session_manager s:capabilities</code></pre>
+<div class="content monospaced">
+<pre>/reply "/nsm/server/announce" s:message s:name_of_session_manager s:capabilities</pre>
 </div></div>
-<div class="paragraph"><p><code>message</code> is a welcome message.</p></div>
-<div class="paragraph"><p>The value of <code>name_of_session_manager</code> will depend on the implementation of the NSM server. It might
+<div class="paragraph"><p><span class="monospaced">message</span> is a welcome message.</p></div>
+<div class="paragraph"><p>The value of <span class="monospaced">name_of_session_manager</span> will depend on the implementation of the NSM server. It might
 say "Non Session Manager", or it might say "LADISH". This is for display to the user.</p></div>
-<div class="paragraph"><p><code>capabilities</code> will be a string containing a colon separated list of special server capabilities.</p></div>
-<div class="paragraph"><p>Presently, the server <code>capabilities</code> are:</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<div class="paragraph"><p><span class="monospaced">capabilities</span> will be a string containing a colon separated list of special server capabilities.</p></div>
+<div class="paragraph"><p>Presently, the server <span class="monospaced">capabilities</span> are:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 2. Available Server Capabilities</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Name</p></td>
-<td align="left" valign="top"><p class="table">Description</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Description</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">server-control</p></td>
-<td align="left" valign="top"><p class="table">client-to-server control</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">server-control</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">client-to-server control</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">broadcast</p></td>
-<td align="left" valign="top"><p class="table">server responds to /nsm/server/broadcast message</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">broadcast</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">server responds to /nsm/server/broadcast message</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">optional-gui</p></td>
-<td align="left" valign="top"><p class="table">server responds to optional-gui messages&#8212;if this capability is not present then clients with optional-guis MUST always keep them visible</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">optional-gui</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">server responds to optional-gui messages&#8212;if this capability is not present then clients with optional-guis MUST always keep them visible</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="paragraph"><p>A client should not consider itself to be under session management until it receives this response.
 For example, the Non applications activate their "SM" blinkers at this time.</p></div>
 <div class="paragraph"><p>If there is an error, a reply of the following form will be sent to the client:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/error "/nsm/server/announce" i:error_code s:error_message</code></pre>
+<div class="content monospaced">
+<pre>/error "/nsm/server/announce" i:error_code s:error_message</pre>
 </div></div>
-<div class="paragraph"><p>The following table defines possible values of <code>error_code</code>:</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<div class="paragraph"><p>The following table defines possible values of <span class="monospaced">error_code</span>:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 3. Response codes</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Code</p></td>
-<td align="left" valign="top"><p class="table">Meaning</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Meaning</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_GENERAL</p></td>
-<td align="left" valign="top"><p class="table">General Error</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_GENERAL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">General Error</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_INCOMPATIBLE_API</p></td>
-<td align="left" valign="top"><p class="table">Incompatible API version</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_INCOMPATIBLE_API</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Incompatible API version</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_BLACKLISTED</p></td>
-<td align="left" valign="top"><p class="table">Client has been blacklisted.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_BLACKLISTED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Client has been blacklisted.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </div>
@@ -956,36 +984,36 @@ cellspacing="0" cellpadding="4">
 <h3 id="_server_to_client_control_messages">Server to Client Control Messages</h3>
 <div class="paragraph"><p>Compliant clients MUST accept the client control messages described in this section. All client
 control messages REQUIRE a response. Responses MUST be delivered back to the sender (NSM) from the
-same socket used by the client in its <code>announce</code> message (by using <code>lo_send_from</code>) AFTER the action has
+same socket used by the client in its <span class="monospaced">announce</span> message (by using <span class="monospaced">lo_send_from</span>) AFTER the action has
 been completed or if an error is encountered. The required response is described in the subsection
 for each message.</p></div>
-<div class="paragraph"><p>If there is an error and the action cannot be completed, then <code>error_code</code> MUST be set to a valid
-error code (see <a href="#Error Code Definitions">[Error Code Definitions]</a>) and <code>message</code> to a string describing the problem
+<div class="paragraph"><p>If there is an error and the action cannot be completed, then <span class="monospaced">error_code</span> MUST be set to a valid
+error code (see <a href="#Error Code Definitions">[Error Code Definitions]</a>) and <span class="monospaced">message</span> to a string describing the problem
 (suitable for display to the user).</p></div>
-<div class="paragraph"><p>The reply can take one of the following two forms, where path MUST be the <code>path</code> of the message being
+<div class="paragraph"><p>The reply can take one of the following two forms, where path MUST be the <span class="monospaced">path</span> of the message being
 replied to (e.g. "nsm/client/save":</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/reply s:path s:message</code></pre>
+<div class="content monospaced">
+<pre>/reply s:path s:message</pre>
 </div></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/error s:path i:error_code s:message</code></pre>
+<div class="content monospaced">
+<pre>/error s:path i:error_code s:message</pre>
 </div></div>
 <div class="sect3">
 <h4 id="_quit">Quit</h4>
 <div class="paragraph"><p>There is no message for this. Clients will receive the Unix SIGTERM signal and MUST close cleanly
 IMMEDIATELY, without displaying any kind of dialog to the user and regardless of whether or not
 unsaved changes would be lost. When a session is closed the application will receive this signal
-soon after having responded to a <code>save</code> message.</p></div>
+soon after having responded to a <span class="monospaced">save</span> message.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_open_2">Open</h4>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/open s:path_to_instance_specific_project s:display_name s:client_id</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/open s:path_to_instance_specific_project s:display_name s:client_id</pre>
 </div></div>
-<div class="paragraph"><p><code>path_to_instance_specific_project</code> is a path name assigned to the client for storing its project
+<div class="paragraph"><p><span class="monospaced">path_to_instance_specific_project</span> is a path name assigned to the client for storing its project
 data.</p></div>
 <div class="paragraph"><p>The client may append to the path, creating a sub-directory, e.g. <em>/song.foo</em> or simply append the
 client&#8217;s native file extension (e.g. <em>.non</em> or <em>.XML</em>). The same transformation MUST be applied to
@@ -994,131 +1022,127 @@ the path.</p></div>
 <div class="paragraph"><p>If a project exists at the path, the client MUST immediately open it.</p></div>
 <div class="paragraph"><p>If a project does not exist at the path, then the client MUST immediately create and open a new one
 at the specified path or, for clients which hold all their state in memory, store the path for
-later use when responding to the <code>save</code> message.</p></div>
+later use when responding to the <span class="monospaced">save</span> message.</p></div>
 <div class="paragraph"><p>No file or directory will be created at the specified path by the server. It is up to the client to
 create what it needs.</p></div>
-<div class="paragraph"><p>For clients which HAVE NOT specified the <code>:switch:</code> capability, the <code>open</code> message will only be
-delivered once, immediately following the <code>announce</code> response.</p></div>
-<div class="paragraph"><p>For clients which HAVE specified the <code>:switch:</code> capability, the client MUST immediately switch to the
+<div class="paragraph"><p>For clients which HAVE NOT specified the <span class="monospaced">:switch:</span> capability, the <span class="monospaced">open</span> message will only be
+delivered once, immediately following the <span class="monospaced">announce</span> response.</p></div>
+<div class="paragraph"><p>For clients which HAVE specified the <span class="monospaced">:switch:</span> capability, the client MUST immediately switch to the
 specified project or create a new one if it doesn&#8217;t exist.</p></div>
 <div class="paragraph"><p>Clients which are incapable of switching projects or are prone to crashing upon switching MUST NOT
-include <code>:switch:</code> in their capability string.</p></div>
+include <span class="monospaced">:switch:</span> in their capability string.</p></div>
 <div class="paragraph"><p>If the user the is allowed to run two or more instances of the application simultaneously (that is
 to say, there is no technical limitation preventing them from doing so, even if it doesn&#8217;t make
-sense to the author), then such an application MUST PRE-PEND the provided <code>client_id</code> string to any
+sense to the author), then such an application MUST PRE-PEND the provided <span class="monospaced">client_id</span> string to any
 names it registers with common subsystems (e.g. JACK client names). This ensures that multiple
 instances of the same application can be restored in any order without scrambling the JACK
-connections or causing other conflicts. The provided <code>client_id</code> will be a concatenation of the value
-of <code>application_name</code> sent by the client in its <code>announce</code> message and a unique identifier. Therefore,
-applications which create single JACK clients can use the value of <code>client_id</code> directly as their JACK
+connections or causing other conflicts. The provided <span class="monospaced">client_id</span> will be a concatenation of the value
+of <span class="monospaced">application_name</span> sent by the client in its <span class="monospaced">announce</span> message and a unique identifier. Therefore,
+applications which create single JACK clients can use the value of <span class="monospaced">client_id</span> directly as their JACK
 client name. Applications which register multiple JACK clients (e.g. Non-Mixer) MUST PRE-PEND
-<code>client_id</code> value to the client names they register with JACK and the application determined part
+<span class="monospaced">client_id</span> value to the client names they register with JACK and the application determined part
 MUST be unique for that (JACK) client.</p></div>
-<div class="paragraph"><p>For example, a suitable JACK client name would be:  <code>$CLIENT_ID/track-1</code></p></div>
+<div class="paragraph"><p>For example, a suitable JACK client name would be:  <span class="monospaced">$CLIENT_ID/track-1</span></p></div>
 <div class="paragraph"><p>Note that this means that the application MUST NOT register with JACK (or any
-other subsystem requiring unique names) until it receives an <code>open</code> message from NSM. Likewise,
-applications with the <code>:switch:</code> capability should close their JACK clients and re-create them with
-using the new <code>client_id</code>. Re-registering is necessary because the JACK API does currently support
+other subsystem requiring unique names) until it receives an <span class="monospaced">open</span> message from NSM. Likewise,
+applications with the <span class="monospaced">:switch:</span> capability should close their JACK clients and re-create them with
+using the new <span class="monospaced">client_id</span>. Re-registering is necessary because the JACK API does currently support
 renaming existing clients, although this is a sorely needed addition.</p></div>
 <div class="paragraph"><p>A response is REQUIRED as soon as the open operation has been completed. Ongoing progress may be
-indicated by sending messages to <code>/nsm/client/progress</code>.</p></div>
+indicated by sending messages to <span class="monospaced">/nsm/client/progress</span>.</p></div>
 <div class="sect4">
 <h5 id="_response_2">Response</h5>
 <div class="paragraph"><p>The client MUST respond to the <em>open</em> message with:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/reply "/nsm/client/open" s:message</code></pre>
+<div class="content monospaced">
+<pre>/reply "/nsm/client/open" s:message</pre>
 </div></div>
 <div class="paragraph"><p>Or</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/error "/nsm/client/open" i:error_code s:message</code></pre>
+<div class="content monospaced">
+<pre>/error "/nsm/client/open" i:error_code s:message</pre>
 </div></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 4. Response codes</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Code</p></td>
-<td align="left" valign="top"><p class="table">Meaning</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Meaning</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR</p></td>
-<td align="left" valign="top"><p class="table">General Error</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">General Error</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_BAD_PROJECT</p></td>
-<td align="left" valign="top"><p class="table">An existing project file was found to be corrupt</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_BAD_PROJECT</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">An existing project file was found to be corrupt</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_CREATE_FAILED</p></td>
-<td align="left" valign="top"><p class="table">A new project could not be created</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_CREATE_FAILED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A new project could not be created</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_UNSAVED_CHANGES</p></td>
-<td align="left" valign="top"><p class="table">Unsaved changes would be lost</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_UNSAVED_CHANGES</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Unsaved changes would be lost</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NOT_NOW</p></td>
-<td align="left" valign="top"><p class="table">Operation cannot be completed at this time</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NOT_NOW</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Operation cannot be completed at this time</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_save_2">Save</h4>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/save</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/save</pre>
 </div></div>
-<div class="paragraph"><p>This message will only be delivered after a previous <code>open</code> message, and may be sent any number of
+<div class="paragraph"><p>This message will only be delivered after a previous <span class="monospaced">open</span> message, and may be sent any number of
 times within the course of a session (including zero, if the user aborts the session).</p></div>
 <div class="sect4">
 <h5 id="_response_3">Response</h5>
 <div class="listingblock">
-<div class="content">
-<pre><code>/reply "/nsm/client/save" s:message</code></pre>
+<div class="content monospaced">
+<pre>/reply "/nsm/client/save" s:message</pre>
 </div></div>
 <div class="paragraph"><p>Or</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/error "/nsm/client/save" i:error_code s:message</code></pre>
+<div class="content monospaced">
+<pre>/error "/nsm/client/save" i:error_code s:message</pre>
 </div></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 5. Response codes</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Code</p></td>
-<td align="left" valign="top"><p class="table">Meaning</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Meaning</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR</p></td>
-<td align="left" valign="top"><p class="table">General Error</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">General Error</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_SAVE_FAILED</p></td>
-<td align="left" valign="top"><p class="table">Project could not be saved</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_SAVE_FAILED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Project could not be saved</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NOT_NOW</p></td>
-<td align="left" valign="top"><p class="table">Operation cannot be completed at this time</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NOT_NOW</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Operation cannot be completed at this time</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </div>
@@ -1132,25 +1156,25 @@ peers are available. Most clients will not need to act on this message. This mes
 when a session is being built or run&#8212;only when it is initially loaded. Clients who intend to act
 on this message MUST not do so by delaying initialization waiting for it.</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/session_is_loaded</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/session_is_loaded</pre>
 </div></div>
 <div class="paragraph"><p>This message does not require a response.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_show_optional_gui">Show Optional Gui</h4>
-<div class="paragraph"><p>If the client has specified the <code>optional-gui</code> capability, then it may receive this message from the
+<div class="paragraph"><p>If the client has specified the <span class="monospaced">optional-gui</span> capability, then it may receive this message from the
 server when the user wishes to change the visibility state of the GUI. It doesn&#8217;t matter if the
 optional GUI is integrated with the program or if it is a separate program \(as is the case with
 SooperLooper\). When the GUI is hidden, there should be no window mapped and if the GUI is a
 separate program, it should be killed.</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/show_optional_gui</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/show_optional_gui</pre>
 </div></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/hide_optional_gui</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/hide_optional_gui</pre>
 </div></div>
 <div class="paragraph"><p>No response is message is required.</p></div>
 </div>
@@ -1159,127 +1183,125 @@ separate program, it should be killed.</p></div>
 <h3 id="_client_to_server_informational_messages">Client to Server Informational Messages</h3>
 <div class="sect3">
 <h4 id="_optional_gui">Optional GUI</h4>
-<div class="paragraph"><p>If the client has specified the <code>optional-gui</code> capability, then it MUST send this message whenever
+<div class="paragraph"><p>If the client has specified the <span class="monospaced">optional-gui</span> capability, then it MUST send this message whenever
 the state of visibility of the optional GUI has changed. It also MUST send this message after it&#8217;s
 announce message to indicate the initial visibility state of the optional GUI.</p></div>
 <div class="paragraph"><p>It is the responsibility of the client to remember the visibility state of its GUI across session
 loads.</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/gui_is_hidden</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/gui_is_hidden</pre>
 </div></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/gui_is_shown</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/gui_is_shown</pre>
 </div></div>
 <div class="paragraph"><p>No response will be delivered.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_progress">Progress</h4>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/progress f:progress</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/progress f:progress</pre>
 </div></div>
-<div class="paragraph"><p>For potentially time-consuming operations, such as <code>save</code> and <code>open</code>, progress updates may be
+<div class="paragraph"><p>For potentially time-consuming operations, such as <span class="monospaced">save</span> and <span class="monospaced">open</span>, progress updates may be
 indicated throughout the duration by sending a floating point value between 0.0 and 1.0, 1.0
 indicating completion, to the NSM server.</p></div>
 <div class="paragraph"><p>The server will not send a response to these messages, but will relay the information to the user.</p></div>
-<div class="paragraph"><p>Note that even when using the <code>progress</code> feature, the final response to the <code>save</code> or <code>open</code>
+<div class="paragraph"><p>Note that even when using the <span class="monospaced">progress</span> feature, the final response to the <span class="monospaced">save</span> or <span class="monospaced">open</span>
 message is still REQUIRED.</p></div>
-<div class="paragraph"><p>Clients which intend to send progress messages should include <code>:progress:</code> in their <code>announce</code>
+<div class="paragraph"><p>Clients which intend to send progress messages should include <span class="monospaced">:progress:</span> in their <span class="monospaced">announce</span>
 capability string.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_dirtiness">Dirtiness</h4>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/is_dirty</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/is_dirty</pre>
 </div></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/is_clean</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/is_clean</pre>
 </div></div>
 <div class="paragraph"><p>Some clients may be able to inform the server when they have unsaved changes pending. Such clients
-may optionally send <code>is_dirty</code> and <code>is_clean</code> messages.</p></div>
-<div class="paragraph"><p>Clients which have this capability should include <code>:dirty:</code> in their <code>announce</code> capability string.</p></div>
+may optionally send <span class="monospaced">is_dirty</span> and <span class="monospaced">is_clean</span> messages.</p></div>
+<div class="paragraph"><p>Clients which have this capability should include <span class="monospaced">:dirty:</span> in their <span class="monospaced">announce</span> capability string.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_status_messsages">Status Messsages</h4>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/client/message i:priority s:message</code></pre>
+<div class="content monospaced">
+<pre>/nsm/client/message i:priority s:message</pre>
 </div></div>
 <div class="paragraph"><p>Clients may send miscellaneous status updates to the server for possible display to the user. This
-may simply be chatter that is normally written to the console. <code>priority</code> should be a number from 0
+may simply be chatter that is normally written to the console. <span class="monospaced">priority</span> should be a number from 0
 to 3, 3 being the most important.</p></div>
-<div class="paragraph"><p>Clients which have this capability should include <code>:message:</code> in their <code>announce</code> capability
+<div class="paragraph"><p>Clients which have this capability should include <span class="monospaced">:message:</span> in their <span class="monospaced">announce</span> capability
 string.</p></div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_error_code_definitions">Error Code Definitions</h3>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 6. Error Code Definitions</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Symbolic Name</p></td>
-<td align="left" valign="top"><p class="table">Integer Value</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Symbolic Name</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Integer Value</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_GENERAL</p></td>
-<td align="left" valign="top"><p class="table">-1</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_GENERAL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-1</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_INCOMPATIBLE_API</p></td>
-<td align="left" valign="top"><p class="table">-2</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_INCOMPATIBLE_API</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-2</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_BLACKLISTED</p></td>
-<td align="left" valign="top"><p class="table">-3</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_BLACKLISTED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-3</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_LAUNCH_FAILED</p></td>
-<td align="left" valign="top"><p class="table">-4</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_LAUNCH_FAILED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-4</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NO_SUCH_FILE</p></td>
-<td align="left" valign="top"><p class="table">-5</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NO_SUCH_FILE</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-5</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NO_SESSION_OPEN</p></td>
-<td align="left" valign="top"><p class="table">-6</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NO_SESSION_OPEN</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-6</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_UNSAVED_CHANGES</p></td>
-<td align="left" valign="top"><p class="table">-7</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_UNSAVED_CHANGES</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-7</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NOT_NOW</p></td>
-<td align="left" valign="top"><p class="table">-8</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NOT_NOW</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-8</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_BAD_PROJECT</p></td>
-<td align="left" valign="top"><p class="table">-9</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_BAD_PROJECT</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-9</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_CREATE_FAILED</p></td>
-<td align="left" valign="top"><p class="table">-10</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_CREATE_FAILED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">-10</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_client_to_server_control">Client to Server Control</h3>
-<div class="paragraph"><p>If the server publishes the <code>:server-control:</code> capability, then clients can also initiate action by
+<div class="paragraph"><p>If the server publishes the <span class="monospaced">:server-control:</span> capability, then clients can also initiate action by
 the server. For example, a client might implement a <em>Save All</em> option which sends a
-<code>/nsm/server/save</code> message to the server, rather than requiring the user to switch to the session
+<span class="monospaced">/nsm/server/save</span> message to the server, rather than requiring the user to switch to the session
 management interface to effect the save.</p></div>
 </div>
 <div class="sect2">
@@ -1289,59 +1311,57 @@ The server responds to the following messages.</p></div>
 <div class="paragraph"><p>All of the following messages will be responded to, at the sender&#8217;s address, with one of the two
 following messages:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/reply s:path s:message</code></pre>
+<div class="content monospaced">
+<pre>/reply s:path s:message</pre>
 </div></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/error s:path i:error_code s:message</code></pre>
+<div class="content monospaced">
+<pre>/error s:path i:error_code s:message</pre>
 </div></div>
-<div class="paragraph"><p>The first parameter of the reply is the path to the message being replied to. The <code>/error</code> reply
-includes an integer error code (non-zero indicates error). <code>message</code> will be a description of the
+<div class="paragraph"><p>The first parameter of the reply is the path to the message being replied to. The <span class="monospaced">/error</span> reply
+includes an integer error code (non-zero indicates error). <span class="monospaced">message</span> will be a description of the
 error.</p></div>
 <div class="paragraph"><p>The possible errors are:</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 7. Responses</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">Code</p></td>
-<td align="left" valign="top"><p class="table">Meaning</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Meaning</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_GENERAL</p></td>
-<td align="left" valign="top"><p class="table">General Error</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_GENERAL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">General Error</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_LAUNCH_FAILED</p></td>
-<td align="left" valign="top"><p class="table">Launch failed</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_LAUNCH_FAILED</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Launch failed</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NO_SUCH_FILE</p></td>
-<td align="left" valign="top"><p class="table">No such file</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NO_SUCH_FILE</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">No such file</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_NO_SESSION</p></td>
-<td align="left" valign="top"><p class="table">No session is open</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_NO_SESSION</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">No session is open</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">ERR_UNSAVED_CHANGES</p></td>
-<td align="left" valign="top"><p class="table">Unsaved changes would be lost</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ERR_UNSAVED_CHANGES</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Unsaved changes would be lost</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="sect3">
 <h4 id="_add">Add</h4>
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/add s:executable_name</code>
+<span class="monospaced">/nsm/server/add s:executable_name</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1358,7 +1378,7 @@ Adds a client to the current session.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/save</code>
+<span class="monospaced">/nsm/server/save</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1375,7 +1395,7 @@ Saves the current session.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/open s:project_name</code>
+<span class="monospaced">/nsm/server/open s:project_name</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1392,7 +1412,7 @@ Saves the current session and loads a new session.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/new s:project_name</code>
+<span class="monospaced">/nsm/server/new s:project_name</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1409,7 +1429,7 @@ Saves the current session and creates a new session.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/duplicate s:new_project</code>
+<span class="monospaced">/nsm/server/duplicate s:new_project</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1426,7 +1446,7 @@ Saves and closes the current session, makes a copy, and opens it.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/close</code>
+<span class="monospaced">/nsm/server/close</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1443,7 +1463,7 @@ Saves and closes the current session.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/abort</code>
+<span class="monospaced">/nsm/server/abort</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1460,7 +1480,7 @@ Closes the current session WITHOUT SAVING
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/quit</code>
+<span class="monospaced">/nsm/server/quit</span>
 </p>
 <div class="ulist"><ul>
 <li>
@@ -1477,12 +1497,12 @@ Saves and closes the current session and terminates the server.
 <div class="ulist"><ul>
 <li>
 <p>
-<code>/nsm/server/list</code>
+<span class="monospaced">/nsm/server/list</span>
 </p>
 <div class="ulist"><ul>
 <li>
 <p>
-Lists available projects. One <code>/reply</code> message will be sent for each existing project.
+Lists available projects. One <span class="monospaced">/reply</span> message will be sent for each existing project.
 </p>
 </li>
 </ul></div>
@@ -1492,26 +1512,26 @@ Lists available projects. One <code>/reply</code> message will be sent for each 
 </div>
 <div class="sect2">
 <h3 id="_client_to_client_communication">Client to Client Communication</h3>
-<div class="paragraph"><p>If the server includes <code>:broadcast:</code> in its capability string, then clients may send broadcast
+<div class="paragraph"><p>If the server includes <span class="monospaced">:broadcast:</span> in its capability string, then clients may send broadcast
 messages to each other through the NSM server. Clients may send messages to the server at the path
-<code>/nsm/server/broadcast</code>.</p></div>
+<span class="monospaced">/nsm/server/broadcast</span>.</p></div>
 <div class="paragraph"><p>The format of this message is as follows:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/server/broadcast s:path [arguments...]</code></pre>
+<div class="content monospaced">
+<pre>/nsm/server/broadcast s:path [arguments...]</pre>
 </div></div>
-<div class="paragraph"><p>The message will then be relayed to all clients in the session at the path <code>path</code> (with the
+<div class="paragraph"><p>The message will then be relayed to all clients in the session at the path <span class="monospaced">path</span> (with the
 arguments shifted by one).</p></div>
 <div class="paragraph"><p>For example the message:</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/nsm/server/broadcast /tempomap/update "0,120,4/4:12351234,240,4/4"</code></pre>
+<div class="content monospaced">
+<pre>/nsm/server/broadcast /tempomap/update "0,120,4/4:12351234,240,4/4"</pre>
 </div></div>
 <div class="paragraph"><p>Would broadcast the following message to all clients in the session (except for the sender), some
 of which might respond to the message by updating their own tempo maps.</p></div>
 <div class="listingblock">
-<div class="content">
-<pre><code>/tempomap/update "0,120,4/4:12351234,240,4/4"</code></pre>
+<div class="content monospaced">
+<pre>/tempomap/update "0,120,4/4:12351234,240,4/4"</pre>
 </div></div>
 <div class="paragraph"><p>The Non programs use this feature to establish peer to peer OSC communication by symbolic names
 (client IDs) without having to remember the OSC URLs of peers across sessions.</p></div>
@@ -1519,11 +1539,22 @@ of which might respond to the message by updating their own tempo maps.</p></div
 </div>
 </div>
 </div>
-<div id="footnotes"><hr /></div>
+<div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2022-08-21 20:16:56 EEST
+ 2022-09-17 19:28:35 EEST
+</div>
+<div id="footer-badges">
+<a href="http://validator.w3.org/check?uri=referer">
+  <img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png"
+       width="30" alt="HTML5 Powered" title="HTML5 Powered">
+</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+  <img style="border:0;width:88px;height:31px"
+    src="http://www.w3.org/Icons/valid-css"
+    alt="Valid CSS!">
+</a>
 </div>
 </div>
 </body>
