@@ -49,7 +49,7 @@ the NSM API. `nsmd` is controlled by the `non-session-manager` GUI. However, the
 API can also be implemented by other session managers (such as LADISH), although consistency and
 robustness will likely suffer if non-NSM compliant clients are allowed to participate in a session.
 The only dependency for client implementations `liblo` (the OSC library), which several Linux audio
-applications already link to or plan to link to in the future.b
+applications already link to or plan to link to in the future.
 
 The aim of this project is to thoroughly define the behavior required of clients. This is an area
 where other attempts at session management (LASH and JACK-Session) have failed. Often the
